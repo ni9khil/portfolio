@@ -1,0 +1,10 @@
+version: "3.9"
+
+services:
+  git:
+    image: alpine/git
+    container_name: git-container
+    volumes:
+      - .:/app
+    working_dir: /app
+    entrypoint: tail -f /dev/null

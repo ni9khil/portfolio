@@ -1,0 +1,27 @@
+{
+  "displayName": "Nikhil Nimbalkar",
+  "role": "Full Stack Developer",
+  "resume": "https://drive.google.com/file/d/1OWuhKJYYr5beu9nfA-caU2JF8wKY7axi/view?usp=sharing",
+  "linkedin": "https://www.linkedin.com/in/example",
+  "github": "https://github.com/ni9khil",
+  "email": "examplemail@gmail.com",
+  "copyrightName": "Nikhil Nimbalkar",
+  "copyrightYear": 2025,
+  "projects": [
+    {
+      "title": "Project One",
+      "github": "https://github.com/ni9khil/project-one",
+      "live": "https://ni9khil.github.io/project-one"
+    },
+    {
+      "title": "Project Two",
+      "github": "https://github.com/ni9khil/project-two",
+      "live": "https://ni9khil.github.io/project-two"
+    },
+    {
+      "title": "Project Three",
+      "github": "https://github.com/ni9khil/project-three",
+      "live": "https://ni9khil.github.io/project-three"
+    }
+  ]
+}
