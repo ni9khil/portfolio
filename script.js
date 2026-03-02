@@ -63,7 +63,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
       const socialLinkedIn = document.getElementById('social-linkedin');
       const socialGitHub = document.getElementById('social-github');
-      if (socialLinkedIn && cfg.linkedin) socialLinkedIn.onclick = () => location.href = cfg.linkedin;
+      if (socialLinkedIn && cfg.linkedin) socialLinkedIn.onclick = () => {
+        const w = window.open(cfg.linkedin, '_blank');
+        if (w) w.opener = null;
+      };
       if (socialGitHub && cfg.github) socialGitHub.onclick = () => location.href = cfg.github;
 
       const contactEmail = document.getElementById('contact-email');
@@ -72,7 +75,12 @@ document.addEventListener('DOMContentLoaded', () => {
         contactEmail.textContent = cfg.email;
       }
       const contactLinkedIn = document.getElementById('contact-linkedin');
-      if (contactLinkedIn && cfg.linkedin) contactLinkedIn.href = cfg.linkedin;
+      if (contactLinkedIn && cfg.linkedin) {
+        contactLinkedIn.href = cfg.linkedin;
+        // open in new tab and avoid giving the opened page a reference to this window
+        contactLinkedIn.target = '_blank';
+        contactLinkedIn.rel = 'noopener noreferrer';
+      }
 
       const cName = document.getElementById('copyright-name');
       const cYear = document.getElementById('copyright-year');
@@ -98,7 +106,8 @@ document.addEventListener('DOMContentLoaded', () => {
 function redirectToLinkedIn() {
   const cfg = window.__siteConfig;
   if (cfg && cfg.linkedin) {
-    window.location.href = cfg.linkedin;
+    const w = window.open(cfg.linkedin, '_blank');
+    if (w) w.opener = null;
     return;
   }
   // fallback: fetch config then redirect
@@ -106,7 +115,10 @@ function redirectToLinkedIn() {
     .then(res => res.ok ? res.json() : Promise.reject('no config'))
     .then(c => {
       try { window.__siteConfig = c; } catch (e) {}
-      if (c && c.linkedin) window.location.href = c.linkedin;
+      if (c && c.linkedin) {
+        const w = window.open(c.linkedin, '_blank');
+        if (w) w.opener = null;
+      }
       else console.warn('No linkedin URL found in config.json');
     })
     .catch(err => console.warn('Could not load config.json for redirect:', err));
